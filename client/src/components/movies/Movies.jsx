@@ -4,18 +4,24 @@ import { Grid } from '@mui/material';
 //components
 import Categories from './Categories';
 import Posts from './post/Posts';
+import { Col, Divider, Row } from 'antd';
+import { Container } from 'react-bootstrap';
+const style = { background: '#0092ff', padding: '8px 0' };
 
 const Movies = () => {
 
     return (
-            <Grid >
-                <Grid item lg={2} xs={12} sm={2}>
-                    <Categories />
-                </Grid>
-                <Grid container item xs={10} sm={10} md={10} lg={10}>
-                    <Posts />
-                </Grid>
+       <Container>
+
+        <Grid style={{minHeight:"100vh"}}>
+            <Grid item lg={2} xs={12} sm={2}>
+                <Categories />
             </Grid>
+            <Grid container item xs={12} sm={12} md={12} lg={12}>
+                <Posts />
+            </Grid>
+        </Grid>
+       </Container>
     )
 }
 

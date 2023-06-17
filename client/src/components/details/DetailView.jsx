@@ -89,7 +89,7 @@ const DetailView = () => {
 
 
     return (
-        <Container>
+        <Container style={{minHeight:"100vh"}}>
             <div style={{ backgroundImage: `url(${movie.picture})` }} className={styles.backgroundImage}>
 
                 <Row className={styles.row}>

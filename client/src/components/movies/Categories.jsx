@@ -7,6 +7,7 @@ import { DataContext } from '../../context/DataProvider';
 import { categories } from '../../constants/data';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Container } from 'react-bootstrap';
 
 const StyledButton = styled(Button)`
     margin: 20px;
@@ -32,20 +33,22 @@ const Categories = () => {
                     </Link>
                 </>
             }
-
-            <Row >
-            <Col style={{backgroundColor:"white",marginLeft:"200px",maxWidth:"90px",height:"30px",textAlign:"center",borderRadius:"10px"}}>
-                    <Link style={{color:"red",textDecoration:"none"}} to={"/movies"}>
-                    All</Link>
+            <Container>
+                <Row style={{ justifyContent: "space-around" }}>
+                    <Col style={{ backgroundColor: "white", maxWidth: "90px", height: "30px", textAlign: "center", borderRadius: "10px", }}>
+                        <Link style={{ color: "red", textDecoration: "none" }} to={"/movies"}>
+                            All</Link>
                     </Col>
-                {categories.map(category =>(
-                    <Col style={{backgroundColor:"white",marginLeft:"200px",maxWidth:"90px",height:"30px",textAlign:"center",borderRadius:"10px"}}>
-                    <Link style={{color:"red",textDecoration:"none"}} to={`/movies/?category=${category.type}`}>
-                    {category.type}</Link>
-                    </Col>
-                ))}
+                    {categories.map(category => (
+                        <Col style={{ backgroundColor: "white", maxWidth: "90px", height: "30px", textAlign: "center", borderRadius: "10px" }}>
+                            <Link style={{ color: "red", textDecoration: "none" }} to={`/movies/?category=${category.type}`}>
+                                {category.type}</Link>
+                        </Col>
+                    ))}
+                </Row>
+            </Container>
 
-            </Row>
+
         </>
     )
 }

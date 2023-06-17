@@ -79,11 +79,11 @@ const Post = ({ post }) => {
                 </Card.Body>
                 <Card.Footer style={{ textAlign: "center" }} className="text-muted">
                     <Row >
-                        <Col>                            
+                        {/* <Col>                            
                             <Link to={`details/${post._id}`}>
                                 <MdInfo className={styles.detailicon} />
                             </Link>
-                        </Col>
+                        </Col> */}
                         <Col>
                             {/* <Link target='_blank' to={trailer}> */}
                                 <SiYoutubemusic className={styles.youtubeicon} />

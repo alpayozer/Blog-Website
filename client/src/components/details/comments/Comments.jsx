@@ -23,6 +23,7 @@ const StyledTextArea = styled(TextareaAutosize)`
     height: 100px !important;
     width: 100%; 
     margin: 0 20px;
+    border-radius:10px;
 `;
 
 const initialValue = {
