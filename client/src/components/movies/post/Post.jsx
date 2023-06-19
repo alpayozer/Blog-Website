@@ -10,7 +10,10 @@ import styles from "../../../css/MoviesCard.module.css";
 import { Col, Row } from 'react-bootstrap';
 import { SiYoutubemusic } from "react-icons/si";
 import { useNavigate } from "react-router-dom";
-
+import { useState, useEffect, useContext } from 'react';
+import { API } from '../../../service/api';
+// import { Col, Row } from 'antd';
+import { DataContext } from '../../../context/DataProvider';
 
 const Container = styled(Box)`
     border: 1px solid #d3cede;
@@ -46,13 +49,39 @@ const Details = styled(Typography)`
     font-size: 14px;
     word-break: break-word;
 `;
-
+const values ={
+    userId:"",
+    movieId:""
+}
 const Post = ({ post }) => {
     const url = post.picture ? post.picture : 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=752&q=80';
+    const { account } = useContext(DataContext);
+    const [rates, setRates] = useState([]);
+    
+    const [watchlist,setWatchlist]= useState(values);
     
     const addEllipsis = (str, limit) => {
         return str.length > limit ? str.substring(0, limit) + '...' : str;
     } 
+
+    useEffect(async() => {
+        setWatchlist({...watchlist,userId:account.name,movieId:post._id})
+        const getRate = async () => {
+            const response = await API.getRates(post._id);
+            if (response.isSuccess) {
+                setRates(response.data);
+            }
+        }
+        await getRate();
+        console.log(rates+"post sayfasındaki rate");
+    }, []);
+
+    const addWatchlist = async()=>{
+        // await setWatchlist({...watchlist,userId:account.name,movieId:movie._id})
+        await API.addWatchlist(watchlist);
+        alert("izleme listesine eklendi");
+        console.log(watchlist);
+    }
 
     return (
         // <Container>
@@ -91,7 +120,7 @@ const Post = ({ post }) => {
                         </Col>
                         <Col>
                             {/* <Link to=""> */}
-                                <MdAddCircle className={styles.watchlisticon}/>
+                                <MdAddCircle onClick={addWatchlist} className={styles.watchlisticon}/>
                             {/* </Link> */}
                         </Col>
                     </Row>

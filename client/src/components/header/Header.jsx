@@ -131,7 +131,7 @@ const Header = () => {
                             <Nav className="justify-content-end flex-grow-1 pe-3">
 
                                 <Nav.Link onClick={() => navigate("/movies")}>Movies</Nav.Link>
-                                <Nav.Link href="/profile"></Nav.Link>
+                                <Nav.Link onClick={() => navigate("/watchlist")}>Watchlist</Nav.Link>
                                 {account.username ==="" ? 
                                 <Nav.Link className={styles.signIn} href="/login">Login/Signin</Nav.Link> 
                                 :

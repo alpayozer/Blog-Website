@@ -39,5 +39,10 @@ export const SERVICE_URLS = {
     newComment: { url: '/comment/new', method: 'POST' },
     getAllComments: { url: 'comments', method: 'GET', query: true },
     deleteComment: { url: 'comment/delete', method: 'DELETE', query: true },
-    updatePost: { url: 'update', method: 'PUT', query: true }
+    updatePost: { url: 'update', method: 'PUT', query: true },
+    addWatchlist: {url:'/watchlist/add', method : 'POST'},
+    getWatchlist: {url:'watchlist', method: 'GET', query: true},
+    deleteWatchlist: {url:'/watchlist/delete', method:'DELETE', query:true},
+    newRate : {url : '/rate/new', method:'POST'},
+    getRates : {url : 'rates',method:'GET',query:true},
 }

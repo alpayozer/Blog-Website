@@ -5,6 +5,8 @@ import { uploadImage, getImage } from '../controller/image-controller.js';
 import { newComment, getComments, deleteComment } from '../controller/comment-controller.js';
 import { loginUser, singupUser, logoutUser } from '../controller/user-controller.js';
 import { authenticateToken, createNewToken } from '../controller/jwt-controller.js';
+import { addWatchlist,getWatchlist,deleteWatchlist } from '../controller/watchlist-controller.js';
+import { newRate,getRates } from '../controller/rate-controller.js';
 
 import upload from '../utils/upload.js';
 
@@ -30,5 +32,12 @@ router.get('/file/:filename', getImage);
 router.post('/comment/new', authenticateToken, newComment);
 router.get('/comments/:id', authenticateToken, getComments);
 router.delete('/comment/delete/:id', authenticateToken, deleteComment);
+
+router.post('/rate/new',authenticateToken,newRate);
+router.get('/rates/:id',authenticateToken,getRates);
+
+router.post('/watchlist/add',authenticateToken,addWatchlist);
+router.get('/watchlist/:id',authenticateToken,getWatchlist);
+router.delete('/watchlist/delete/:id',authenticateToken,deleteWatchlist);
 
 export default router;

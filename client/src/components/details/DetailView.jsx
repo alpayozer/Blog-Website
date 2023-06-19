@@ -15,6 +15,8 @@ import { Button, Modal } from 'antd';
 
 // components
 import Comments from './comments/Comments';
+import Watchlist from '../watchlist/watchlists/Watchlist';
+import Rates from './rates/Rates';
 
 // const Container = styled(Box)(() => ({
 //     margin: '50px 100px',
@@ -49,15 +51,19 @@ const Heading = styled(Typography)`
     text-align: center;
     margin: 50px 0 10px 0;
 `;
-
+const values = {
+    userId: "",
+    movieId: ""
+}
 const DetailView = () => {
     const url = 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
 
     const [movie, setMovie] = useState({});
     const { account } = useContext(DataContext);
-    const [value, setValue] = useState(1)
+    const [value, setValue] = useState(0)
     const [antvalue, antsetValue] = useState(null)
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [watchlist, setWatchlist] = useState(values);
 
     const navigate = useNavigate();
     const { id } = useParams();
@@ -70,6 +76,7 @@ const DetailView = () => {
             }
         }
         fetchData();
+        setWatchlist({ ...watchlist, userId: account.name, movieId: id })
     }, []);
 
     const deleteBlog = async () => {
@@ -82,20 +89,28 @@ const DetailView = () => {
     };
     const handleOk = () => {
         setIsModalOpen(false);
+
     };
     const handleCancel = () => {
         setIsModalOpen(false);
     };
 
+    const addWatchlist = async () => {
+        // await setWatchlist({...watchlist,userId:account.name,movieId:movie._id})
+        await API.addWatchlist(watchlist);
+        alert("izleme listesine eklendi");
+        console.log(watchlist);
+
+    }
 
     return (
-        <Container style={{minHeight:"100vh"}}>
+        <Container style={{ minHeight: "100vh" }}>
             <div style={{ backgroundImage: `url(${movie.picture})` }} className={styles.backgroundImage}>
 
                 <Row className={styles.row}>
                     <Col md={4}>
                         <img style={{ width: 350, height: 500, borderRadius: 40, margin: 30, marginBottom: 0 }} src={movie.picture || url} />
-                        <Rate style={{ marginLeft: "33%", marginTop: "2%", fontSize: "25px" }} disabled defaultValue={4} />
+                        <Rate style={{ marginLeft: "33%", marginTop: "2%", fontSize: "25px" }} disabled value={value} />
                     </Col>
                     <Col className={styles.col} md={7}>
                         <Row style={{ color: 'white', backgroundColor: "" }}>
@@ -120,11 +135,10 @@ const DetailView = () => {
                             </Row>
                             <Row>
                                 <Col md={4}><p className={styles.time}>{movie.year}<span style={{ marginLeft: 10, marginRight: 10, opacity: 0.5 }}>|</span>{movie.time}</p></Col>
-                                <Col md={1}><Tooltip title="WatchList"><MdPlaylistAdd size={30} /></Tooltip></Col>
-                                <Col md={1}><Tooltip title="Rate"><MdStar onClick={showModal} size={25} /></Tooltip></Col>
-                                <Modal title="Filmi Puanla" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                                    <Rate style={{ alignItems: "center", marginLeft: "150px" }} />
-                                </Modal>
+                                <Col md={1}><Tooltip title="WatchList"><MdPlaylistAdd onClick={addWatchlist} size={30} /></Tooltip></Col>
+                                <Col md={1}><Tooltip title="Rate">
+                                    <Rates movie={movie} />
+                                </Tooltip></Col>
                                 <Col md={1}>
                                     <Tooltip title="Trailer">
                                         <Link target='_blank' to="https://www.youtube.com/watch?v=qEVUtrk8_B4">
@@ -134,7 +148,7 @@ const DetailView = () => {
                                 </Col>
                             </Row>
                             <p>{movie.description}</p>
-                           
+
                             <Row>
                                 <Col style={{}} md={1}><Badge bg="light" text="dark">{movie.categories}</Badge></Col>
                                 <Col style={{ marginLeft: 20, }} md={1}><Badge bg="light" text="dark">{movie.categories}</Badge></Col>

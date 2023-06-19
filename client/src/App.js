@@ -13,6 +13,7 @@ import Update from './components/create/Update';
 import Movies from './components/movies/Movies';
 import Contact from './components/contact/Contact';
 import Login from './components/account/Login';
+import Watchlist from './components/watchlist/WatchlistPage';
 
 const PrivateRoute = ({ isAuthenticated, ...props }) => {
   const token = sessionStorage.getItem('accessToken');
@@ -60,6 +61,10 @@ function App() {
 
             <Route path='/profile' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
               <Route path='/profile' element={<Contact />} />
+            </Route>
+
+            <Route path='/watchlist' element={<PrivateRoute isAuthenticated={isAuthenticated} />} >
+              <Route path='/watchlist' element={<Watchlist />} />
             </Route>
           </Routes>
         </div>
