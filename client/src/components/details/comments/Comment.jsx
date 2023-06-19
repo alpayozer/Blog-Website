@@ -7,6 +7,7 @@ import { Card , Alert,notification} from 'antd';
 import styles from "../../../css/MovieDetailComment.module.css"
 import { API } from '../../../service/api';
 import { DataContext } from "../../../context/DataProvider";
+import {ML} from '../../../i18next.js';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import { BiDislike, BiLike } from "react-icons/bi";
@@ -47,9 +48,9 @@ const Comment = ({ comment, setToggle }) => {
     const [api, contextHolder] = notification.useNotification();
     const openNotificationWithIcon = (type) => {
       api[type]({
-        message: 'Başarılı',
+        message: ML('basarili'),
         description:
-          'Yorum başarıyla kaldırıldı.',
+        ML('yorumSilme'),
       });
     };
     const removeComment = async () => {

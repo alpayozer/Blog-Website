@@ -13,11 +13,11 @@ const Movies = () => {
     return (
        <Container>
 
-        <Grid style={{minHeight:"100vh"}}>
+        <Grid style={{minHeight:"100vh",marginTop:"3%"}}>
             <Grid item lg={2} xs={12} sm={2}>
                 <Categories />
             </Grid>
-            <Grid container item xs={12} sm={12} md={12} lg={12}>
+            <Grid style={{marginTop:"3%"}} container item xs={12} sm={12} md={12} lg={12}>
                 <Posts />
             </Grid>
         </Grid>

@@ -17,6 +17,7 @@ import { Button, Modal } from 'antd';
 import Comments from './comments/Comments';
 import Watchlist from '../watchlist/watchlists/Watchlist';
 import Rates from './rates/Rates';
+import { ML } from '../../i18next';
 
 // const Container = styled(Box)(() => ({
 //     margin: '50px 100px',
@@ -104,9 +105,9 @@ const DetailView = () => {
     }
 
     return (
-        <Container style={{ minHeight: "100vh" }}>
-            <div style={{ backgroundImage: `url(${movie.picture})` }} className={styles.backgroundImage}>
-
+        <Container style={{minHeight:"100vh"}}>
+            <div  className={styles.glass}>
+            {/* style={{ backgroundImage: `url(${movie.picture})` }} */}
                 <Row className={styles.row}>
                     <Col md={4}>
                         <img style={{ width: 350, height: 500, borderRadius: 40, margin: 30, marginBottom: 0 }} src={movie.picture || url} />
@@ -135,12 +136,10 @@ const DetailView = () => {
                             </Row>
                             <Row>
                                 <Col md={4}><p className={styles.time}>{movie.year}<span style={{ marginLeft: 10, marginRight: 10, opacity: 0.5 }}>|</span>{movie.time}</p></Col>
-                                <Col md={1}><Tooltip title="WatchList"><MdPlaylistAdd onClick={addWatchlist} size={30} /></Tooltip></Col>
-                                <Col md={1}><Tooltip title="Rate">
-                                    <Rates movie={movie} />
-                                </Tooltip></Col>
+                                <Col md={1}><Tooltip title={ML('izlemeListesi')}><MdPlaylistAdd size={30} /></Tooltip></Col>
+                                <Col md={1}><Tooltip title={ML('puan')}><Rates movie={movie} /></Tooltip></Col>
                                 <Col md={1}>
-                                    <Tooltip title="Trailer">
+                                    <Tooltip title={ML('fragman')}>
                                         <Link target='_blank' to="https://www.youtube.com/watch?v=qEVUtrk8_B4">
                                             <MdOutlineNotStarted size={25} color='white' />
                                         </Link>
@@ -156,8 +155,8 @@ const DetailView = () => {
                             </Row>
                             <div>
                                 <hr />
-                                <p>Oyuncular: {movie.actors}</p>
-                                <p>Senarist: {movie.directors}</p>
+                                <p>{ML('oyuncular:')} {movie.actors}</p>
+                                <p>{ML('yönetmen:')} {movie.directors}</p>
                             </div>
                         </Row>
                     </Col>

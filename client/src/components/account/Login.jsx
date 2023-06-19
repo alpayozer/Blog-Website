@@ -6,6 +6,7 @@ import { Container, Row } from "react-bootstrap";
 import styles from "../../css/Login.module.css"
 import { API } from '../../service/api';
 import { DataContext } from '../../context/DataProvider';
+import { ML}  from '../../i18next.js';
 
 const Component = styled(Box)`
     width: 400px;
@@ -136,15 +137,15 @@ const Login = ({ isUserAuthenticated }) => {
                     account === 'login' ?
                     
                     <Wrapper>
-                        <h1 className={styles.title}>Giriş Yap</h1>
-                            <TextField variant="standard" value={login.username} onChange={(e) => onValueChange(e)} name='username' label='Enter Username' />
-                            <TextField variant="standard" value={login.password} onChange={(e) => onValueChange(e)} name='password' label='Enter Password' />
+                        <h1 className={styles.title}>{ML('giris')}</h1>
+                            <TextField style={{backgroundColor:"white",borderRadius:"2px",boxShadow:"0px 0px 20px white"}} variant="standard" value={login.username} onChange={(e) => onValueChange(e)} name='username' label={ML('isimAlanı')} />
+                            <TextField style={{backgroundColor:"white",borderRadius:"2px",boxShadow:"0px 0px 20px white"}} variant="standard" value={login.password} onChange={(e) => onValueChange(e)} name='password' label={ML('soyisimAlanı')} />
 
                             {error && <Error>{error}</Error>}
 
-                            <LoginButton variant="contained" onClick={() => loginUser()} >Login</LoginButton>
-                            <Text style={{ textAlign: 'center' }}>OR</Text>
-                            <SignupButton onClick={() => toggleSignup()} style={{ marginBottom: 50 }}>Create an account</SignupButton>
+                            <LoginButton variant="contained" onClick={() => loginUser()} >{ML('girisButonu')}</LoginButton>
+                            <Text style={{ textAlign: 'center' }}>{ML('yada')}</Text>
+                            <SignupButton onClick={() => toggleSignup()} style={{ marginBottom: 50 }}>{ML('kayıtOl')}</SignupButton>
                         </Wrapper> :
                         <Wrapper>
                         <h1 className={styles.title}>Kayıt Ol</h1>

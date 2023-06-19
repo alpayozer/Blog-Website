@@ -1,23 +1,27 @@
 import React, { useState, useEffect } from 'react';
-
-import { Box, styled, Button, FormControl } from '@mui/material';
+import { Button , notification} from 'antd';
+import { Box, styled, FormControl } from '@mui/material';
 import { AddCircle as Add } from '@mui/icons-material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Col, Row ,Input } from 'antd';
-
+import melody from '../../assets/icons8-cookie-monster.svg'
 import { API } from '../../service/api';
+import { ML } from '../../i18next';
 
 const Container = styled(Box)(({ theme }) => ({
     margin: '50px 100px',
     [theme.breakpoints.down('md')]: {
         margin: 0
-    }
+    },
+    height:"100vh",
+    minHeight:"100"
 }));
 
 const Image = styled('img')({
-    width: '20%',
+    width: '80%',
     height: '50vh',
-    objectFit: 'cover'
+    objectFit: 'cover',
+    borderRadius:"10px"
 });
 
 const StyledFormControl = styled(FormControl)`
@@ -43,7 +47,7 @@ const Update = () => {
     const [movie, setMovie] = useState(initialMovie);
     const [file, setFile] = useState('');
     const [imageURL, setImageURL] = useState('');
-
+    const [api, contextHolder] = notification.useNotification();
     const { id } = useParams();
 
     const url = 'https://images.unsplash.com/photo-1543128639-4cb7e6eeef1b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFwdG9wJTIwc2V0dXB8ZW58MHx8MHx8&ixlib=rb-1.2.1&w=1000&q=80';
@@ -74,10 +78,17 @@ const Update = () => {
         }
         getImage();
     }, [file])
-
+    const openNotificationWithIcon = (type) => {
+        api[type]({
+            message: ML('basarili'),
+            description:
+                ML('filmGüncellemeBasarili'),
+        });
+    };
     const updateBlogPost = async () => {
         await API.updatePost(movie);
-        navigate(`/movies/details/${id}`);
+        await openNotificationWithIcon('success');
+        //navigate(`/movies/details/${id}`);
     }
 
     const handleChange = (e) => {
@@ -86,9 +97,17 @@ const Update = () => {
 
     return (
         <Container>
-            <Image src={movie.picture || url} alt="post" />
-
-            <StyledFormControl>
+            {contextHolder}
+            <Row>
+                <Col span={12}>
+                <Container>
+                    <Image src={movie.picture || url} alt="post" />
+                </Container>
+                </Col>
+            
+            <Col span={12}>
+            <Container>
+                <StyledFormControl>
                 <label htmlFor="fileInput">
                     <Add fontSize="large" color="action" />
                 </label>
@@ -98,32 +117,38 @@ const Update = () => {
                     style={{ display: "none" }}
                     onChange={(e) => setFile(e.target.files[0])}
                 />
-                <Row>
-                    <Input value={movie.title} name='title' onChange={(e)=> handleChange(e)} placeholder="Title" />
+                <Row style={{marginTop:"1%"}}>
+                    <Input value={movie.title} name='title' onChange={(e)=> handleChange(e)} placeholder={ML('filmBasligi')} />
                 </Row>
-                <Row>
-                <Input value={movie.year} name='year' onChange={(e)=> handleChange(e)} placeholder="Year" />
+                <Row style={{marginTop:"1%"}}>
+                <Input value={movie.year} name='year' onChange={(e)=> handleChange(e)} placeholder={ML('filmYili')} />
                     
                 </Row>
-                <Row>
-                <Input value={movie.actors} name='actors' onChange={(e)=> handleChange(e)} placeholder="Actors" />
+                <Row style={{marginTop:"1%"}}>
+                <Input value={movie.actors} name='actors' onChange={(e)=> handleChange(e)} placeholder={ML('oyuncular')} />
                   
                 </Row>
-                <Row>
-                <Input value={movie.directors} name='directors' onChange={(e)=> handleChange(e)} placeholder="Directors" />
+                <Row style={{marginTop:"1%"}}>
+                <Input value={movie.directors} name='directors' onChange={(e)=> handleChange(e)} placeholder={ML('yönetmen')} />
                 </Row>
-                <Row>
-                <Input value={movie.categories} name='categories' onChange={(e)=> handleChange(e)} placeholder="Category" />
+                <Row style={{marginTop:"1%"}}>
+                <Input value={movie.categories} name='categories' onChange={(e)=> handleChange(e)} placeholder={ML('kategori')} />
                 </Row>
-                <Row>
-                <Input value={movie.time} name='time' onChange={(e)=> handleChange(e)} placeholder="Time" />
+                <Row style={{marginTop:"1%"}}>
+                <Input value={movie.time} name='time' onChange={(e)=> handleChange(e)} placeholder={ML('süre')} />
                 </Row>
-                <Row>
-                <Input value={movie.description} name='description' onChange={(e)=> handleChange(e)} placeholder="Description" />
+                <Row style={{marginTop:"1%"}}>
+                <Input value={movie.description} name='description' onChange={(e)=> handleChange(e)} placeholder={ML('filmAciklamasi')} />
                 </Row>
-                <Button onClick={() => updateBlogPost()} variant="contained" color="primary">Update</Button>
+                <Button style={{marginTop:"1%",backgroundColor:"#FA9503",color:"white",textDecoration:"none",border:"none",height:"4vh"}} onClick={() => updateBlogPost()} variant="contained" color="primary">{<img style={{marginRight:"1%"}} src={melody} width={30} height={30}/>}{ML('filmiGüncelle')}</Button>
             </StyledFormControl>
+            </Container>
+            </Col>
+
+            
+            </Row>
         </Container>
+        
     )
 }
 
