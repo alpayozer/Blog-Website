@@ -136,7 +136,7 @@ const DetailView = () => {
                             </Row>
                             <Row>
                                 <Col md={4}><p className={styles.time}>{movie.year}<span style={{ marginLeft: 10, marginRight: 10, opacity: 0.5 }}>|</span>{movie.time}</p></Col>
-                                <Col md={1}><Tooltip title={ML('izlemeListesi')}><MdPlaylistAdd size={30} /></Tooltip></Col>
+                                <Col md={1}><Tooltip title={ML('izlemeListesi')}><MdPlaylistAdd onClick={addWatchlist} size={30} /></Tooltip></Col>
                                 <Col md={1}><Tooltip title={ML('puan')}><Rates movie={movie} /></Tooltip></Col>
                                 <Col md={1}>
                                     <Tooltip title={ML('fragman')}>
