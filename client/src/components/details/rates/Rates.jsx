@@ -76,6 +76,7 @@ const Rates = ({ movie }) => {
             {/* <RatePage rate={rateSum} length={rates.length}/> */}
             {/* <div>ORTALAMA{rateSum = rateSum / rates.length}</div> */}
             <Tag color="geekblue">{rateSum = rateSum / rates.length}</Tag>
+            {/* yorum */}
 
         </>
     )
