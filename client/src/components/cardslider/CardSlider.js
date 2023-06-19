@@ -1,13 +1,12 @@
 import React from "react";
 import Post from "../movies/post/Post";
 import { useEffect, useState } from "react";
-
 import { API } from "../../service/api";
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Grid, Box } from '@mui/material';
 import { Link, useSearchParams } from 'react-router-dom';
+import {ML} from '../../i18next.js';
 const CardSlider = () => {
   const [posts, getPosts] = useState([]);
   
@@ -28,7 +27,7 @@ const CardSlider = () => {
             </Link>
         </Grid>
     )) : <Box style={{color: '878787', margin: '30px 80px', fontSize: 18}}>
-            No data is available for selected category
+            {ML('noData')}
         </Box>
 
 

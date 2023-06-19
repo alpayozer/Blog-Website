@@ -1,22 +1,15 @@
 import { useState, useEffect, useContext } from 'react';
 
-import { Button, Table, TableHead, TableRow, TableCell, TableBody, styled } from '@mui/material';
+import {  Table, TableHead, TableRow, TableCell, TableBody, styled } from '@mui/material';
 import { Link, useSearchParams } from 'react-router-dom';
 import { DataContext } from '../../context/DataProvider';
-
+import { Button} from 'antd';
 import { categories } from '../../constants/data';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
-
-const StyledButton = styled(Button)`
-    margin: 20px;
-    width: 85%;
-    background: #6495ED;
-    color: #fff;
-    text-decoration: none;
-`;
-
+import princess from '../../assets/icons8-princess.svg';
+import {ML} from "../../i18next.js";
 
 const Categories = () => {
     const [searchParams] = useSearchParams();
@@ -28,20 +21,24 @@ const Categories = () => {
             {
                 account.username === "admin" &&
                 <>
+                <Container>
                     <Link to={`/create`} style={{ textDecoration: 'none' }}>
-                        <StyledButton variant="contained">Create Blog</StyledButton>
+                        <Button style={{backgroundColor:"#FA9503" , color:"white",textDecoration:"none",marginBottom:"2%", float:"right",border:"none",height:"4vh"}} >{<img style={{marginRight:"1%"}} src={princess} width={30} height={30}/>}{ML('yeniFilmEkle')}</Button>
                     </Link>
+                </Container>
+                    
                 </>
             }
             <Container>
                 <Row style={{ justifyContent: "space-around" }}>
-                    <Col style={{ backgroundColor: "white", maxWidth: "90px", height: "30px", textAlign: "center", borderRadius: "10px", }}>
-                        <Link style={{ color: "red", textDecoration: "none" }} to={"/movies"}>
+
+                    <Col style={{  maxWidth: "90px", height: "30px", textAlign: "center", borderRadius: "3px",borderStyle:"dashed", borderColor:"white" , stroke:"white"}}>
+                        <Link style={{ color: "white", textDecoration: "none" }} to={"/movies"}>
                             All</Link>
                     </Col>
                     {categories.map(category => (
-                        <Col style={{ backgroundColor: "white", maxWidth: "90px", height: "30px", textAlign: "center", borderRadius: "10px" }}>
-                            <Link style={{ color: "red", textDecoration: "none" }} to={`/movies/?category=${category.type}`}>
+                        <Col style={{  maxWidth: "90px", height: "30px", textAlign: "center", borderRadius: "10px" , borderRadius: "3px",borderStyle:"dashed", borderColor:"white"}}>
+                            <Link style={{ color: "white", textDecoration: "none" }} to={`/movies/?category=${category.type}`}>
                                 {category.type}</Link>
                         </Col>
                     ))}

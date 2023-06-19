@@ -28,6 +28,7 @@ import IconCard from "../IconCard/IconCard";
 import Posts from '../movies/post/Posts';
 import CardSlider from "../cardslider/CardSlider";
 import Carousel from "../carousel/Carousel";
+import { ML } from "../../i18next";
 
 const Home = () => {
   
@@ -37,9 +38,9 @@ const Home = () => {
 
         <div className={styles.slider}>
           <span className={styles.title}>
-            Senin için yeni filmler ekledik
+            {ML('seninIcin')}
             <img src={jerry} />
-            Göz atmak ister misin? <img src={tom} />
+            {ML('gözAtmak')} <img src={tom} />
           </span>
           <Carousel />
 
@@ -52,7 +53,7 @@ const Home = () => {
         <br/>
         <br/>
         <br/>
-        <span className={styles.secondtitle}><img src={jake}/> Keşfet </span>
+        <span className={styles.secondtitle}><img src={jake}/> {ML('kesfet')} </span>
         <CardSlider/>
         <div>
 
@@ -97,7 +98,7 @@ const Home = () => {
             <Col style={{ marginTop: "5%" }} xs={2} sm={4} md={6} xl={12}>
               <Row className={styles.icon_row}>
               <h5 className={styles.alt_title2}>
-                Aradığın kategoriye hızlıca eriş
+              {ML('kategoriyeUlas')}
               </h5>
                 <Space
                   direction="vertical"
@@ -111,13 +112,13 @@ const Home = () => {
                       style={{ display: "flex" }}
                     >
                       <Col xs={2} sm={2} md={4} xl={4}>
-                        <IconCard title="korku" image={korku} />
+                        <IconCard title={ML('korku')} image={korku} />
                       </Col>
                       <Col xs={2} sm={2} md={4} xl={4}>
-                        <IconCard title="Aksiyon" image={aksiyon} />
+                        <IconCard title={ML('aksiyon')} image={aksiyon} />
                       </Col>
                       <Col xs={2} sm={2} md={4} xl={4}>
-                        <IconCard title="Komedi" image={komedi} />
+                        <IconCard title={ML('komedi')} image={komedi} />
                       </Col>
                     </Space>
                   </Row>
@@ -128,13 +129,13 @@ const Home = () => {
                       style={{ display: "flex" }}
                     >
                       <Col xs={2} sm={2} md={4} xl={4}>
-                        <IconCard title="Gerilim" image={gerilim} />
+                        <IconCard title={ML('gerilim')} image={gerilim} />
                       </Col>
                       <Col xs={2} sm={2} md={4} xl={4}>
-                        <IconCard title="Romantik" image={romantik} />
+                        <IconCard title={ML('romantik')} image={romantik} />
                       </Col>
                       <Col xs={2} sm={2} md={4} xl={4}>
-                        <IconCard title="Bilim Kurgu" image={bilimKurgu} />
+                        <IconCard title={ML('bilimKurgu')} image={bilimKurgu} />
                       </Col>
                     </Space>
                   </Row>

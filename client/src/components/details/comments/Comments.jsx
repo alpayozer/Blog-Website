@@ -4,6 +4,8 @@ import { Box, TextareaAutosize, Button, styled } from '@mui/material';
 import { DataContext } from '../../../context/DataProvider';
 
 import { API } from '../../../service/api';
+import {ML} from '../../../i18next.js';
+
 
 //components
 import Comment from './Comment';
@@ -73,7 +75,7 @@ const Comments = ({ movie }) => {
                 <Image src={url} alt="dp" />   
                 <StyledTextArea 
                     rowsMin={5} 
-                    placeholder="what's on your mind?"
+                    placeholder={ML('yorumMetni')}
                     onChange={(e) => handleChange(e)} 
                     value={comment.comments}
                 />
@@ -83,7 +85,7 @@ const Comments = ({ movie }) => {
                     size="medium" 
                     style={{ height: 40 }}
                     onClick={(e) => addComment(e)}
-                >Share</Button>             
+                >{ML('yorumPaylas')}</Button>             
             </Container>
             <Box>
                 {

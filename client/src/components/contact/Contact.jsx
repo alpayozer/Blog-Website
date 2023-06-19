@@ -16,6 +16,7 @@ import { Button, Modal } from 'antd';
 import babyYoda from "../../assets/baby-yoda.svg"
 import { DataContext } from "../../context/DataProvider";
 import { useContext } from "react";
+import {ML} from '../../i18next.js';
 
 
 const Contact = () => {
@@ -80,18 +81,18 @@ const Contact = () => {
                                 <Col style={{ marginTop: '3%' }} xs={12} sm={12} md={2} xl={2} >
                                     <>
                                         <Button className={styles.password} onClick={showModal} type='dark'>
-                                            Şifreni değiştir
+                                            {ML('sifreDegistirme')}
                                         </Button>
-                                        <Modal title="Şifreni Değiştir" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                                            <Input.Password placeholder="mevcut şifre" />
+                                        <Modal title={ML('sifreDegistirme')} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                                            <Input.Password placeholder={ML('mevcutSifre')} />
                                             <Input.Password
-                                                placeholder="yeni şifre"
+                                                placeholder={ML('yeniSifre')}
                                             // iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
                                             />
                                         </Modal>
                                     </>
                                     <Button className={styles.about} type='dark' >
-                                        Hakkımda Bilgileri Güncelle
+                                    {ML('hakkimda')}
                                     </Button>
                                 </Col>
                             </Row>
@@ -102,7 +103,7 @@ const Contact = () => {
                                 <Col style={{ backgroundColor: '' }} xs={12} sm={12} md={5} xl={5} >
                                     <Row>
                                         <h5> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40px" height="40px"><path fill="#f5bc00" d="M24,3c-1,0-13,22-13,42c0,0,13-16,17-16s9,13,9,13C37,23,25,3,24,3z" /><path fill="#6c19ff" d="M25.5,22.1L26,25l-2.5-2.6L21,25l0.7-2.9L18,20.5l4.1-0.7L23.5,9l1.7,10.8l3.8,0.7L25.5,22.1z" /></svg>
-                                            Yapılan Yorumlar</h5>
+                                        {ML('yapilanYorumlar')}</h5>
                                     </Row>
                                     {/* <Row className={styles.customScroll}>
                                         <CommentsMade title="Film " comment="Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit " />
@@ -123,7 +124,7 @@ const Contact = () => {
 
                                 <Col style={{ backgroundColor: '' }} xs={12} sm={12} md={6} xl={6} >
                                     <h5 ><img src={babyYoda}/>
-                                        Top 3 Filmler</h5>
+                                    {ML('top3')}</h5>
                                     {/* <Row>
                                         <Col md={4} style={{ backgroundColor: '' }}>
                                             <MoviesCard title="Film adı"

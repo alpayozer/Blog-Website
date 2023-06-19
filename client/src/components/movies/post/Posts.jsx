@@ -9,6 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 //components
 import Post from './Post';
+import {ML} from "../../../i18next.js";
 
 const Posts = () => {
     const [posts, getPosts] = useState([]);
@@ -37,7 +38,7 @@ const Posts = () => {
                         </Link>
                     </Grid>
                 )) : <Box style={{color: '878787', margin: '30px 80px', fontSize: 18}}>
-                        Aradığınız içerik bulunamadı.
+                        {ML('üzgünüz')}
                     </Box>
             }
         </>
