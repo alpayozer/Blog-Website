@@ -19,7 +19,7 @@ const MovieSchema = mongoose.Schema({
         required: true,
     },
     time: {
-        type: String,
+        type: Number,
         required: true,
     },
     description: {
@@ -33,6 +33,10 @@ const MovieSchema = mongoose.Schema({
     categories: {
         type: Array,
         required: false   
+    },
+    trailer: {
+        type: String,
+        required:false
     },
     createdAt:{
         type:Date

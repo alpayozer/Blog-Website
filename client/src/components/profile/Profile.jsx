@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from '../../css/Profile.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -17,11 +17,22 @@ import babyYoda from "../../assets/baby-yoda.svg"
 import { DataContext } from "../../context/DataProvider";
 import { useContext } from "react";
 import {ML} from '../../i18next.js';
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { API } from '../../service/api';
 
 
-const Contact = () => {
+const Profile = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { account } = useContext(DataContext);
+    const navigate = useNavigate();
+    let id;
+    
+    useEffect(async()=>{
+        const {data} = await API.getUser(account.username);
+        id = data[0]._id;
+        console.log(id);
+    },[account])
+
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -31,6 +42,14 @@ const Contact = () => {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
+
+    const deleteUser= async()=>{
+         await API.userDelete(id)
+        console.log(account.username);
+        navigate("/login");
+    }
+
+
     return (
         <body className={styles.body}>
                 <Container>
@@ -94,7 +113,13 @@ const Contact = () => {
                                     <Button className={styles.about} type='dark' >
                                     {ML('hakkimda')}
                                     </Button>
+                                    <br/>
+                                    <Button onClick={deleteUser} className={styles.about} type='dark' >
+                                    {/* {ML('hakkimda')} */}
+                                    Hesabı sil
+                                    </Button>
                                 </Col>
+                                
                             </Row>
                             <hr />
 
@@ -152,4 +177,4 @@ const Contact = () => {
     );
 }
 
-export default Contact;
+export default Profile;

@@ -7,7 +7,7 @@ import User from '../model/user.js';
 
 dotenv.config();
 
-export const singupUser = async (request, response) => {
+export const signupUser = async (request, response) => {
     try {
         // const salt = await bcrypt.genSalt();
         // const hashedPassword = await bcrypt.hash(request.body.password, salt);
@@ -28,6 +28,7 @@ export const singupUser = async (request, response) => {
 export const loginUser = async (request, response) => {
     let user = await User.findOne({ username: request.body.username });
     if (!user) {
+        console.log("'Username does not match'");
         return response.status(400).json({ msg: 'Username does not match' });
     }
 
@@ -53,6 +54,26 @@ export const loginUser = async (request, response) => {
 export const logoutUser = async (request, response) => {
     const token = request.body.token;
     await Token.deleteOne({ token: token });
-
     response.status(204).json({ msg: 'logout successfull' });
+}
+
+export const getUser = async (request, response) => {
+    try {
+        const user = await User.find({ username: request.params.id });
+        
+        response.status(200).json(user);
+    } catch (error) {
+        response.status(500).json(error)
+    }
+}
+
+export const deleteUser = async (request, response) => {
+    try {
+        const user = await User.findById(request.params.id);
+        await user.delete()
+
+        response.status(200).json('user deleted successfully');
+    } catch (error) {
+        response.status(500).json(error)
+    }
 }

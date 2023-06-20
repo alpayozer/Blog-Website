@@ -43,7 +43,7 @@ export const langs = {
 
         //yorum kısmı
         yorumsilme:'Yorum başarıyla kaldırıldı',
-        yorumMetni: 'Film hakkındakini düşüncelerini bizimle paylaş..',
+        yorumMetni:'Film hakkındakini düşüncelerini bizimle paylaş..',
         yorumPaylas: 'Paylaş',
        // yorum kısmı bitti
 

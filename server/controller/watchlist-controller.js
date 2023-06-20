@@ -34,3 +34,4 @@ export const deleteWatchlist = async (request, response) => {
         response.status(500).json(error)
     }
 }
+

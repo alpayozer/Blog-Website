@@ -41,7 +41,7 @@ export const createNewToken = async (request, response) => {
         if (error) {
             response.status(500).json({ msg: 'invalid refresh token'});
         }
-        const accessToken = jwt.sign(user, process.env.ACCESS_SECRET_KEY, { expiresIn: '45m'});
+        const accessToken = jwt.sign(user, process.env.ACCESS_SECRET_KEY, { expiresIn: '2h'});
 
         return response.status(200).json({ accessToken: accessToken })
     })

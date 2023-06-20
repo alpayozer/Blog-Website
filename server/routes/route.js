@@ -1,9 +1,9 @@
 import express from 'express';
 
-import { createMovie, updateMovie, deleteMovie, getMovie, getAllMovies ,getLastMovies} from '../controller/post-controller.js';
+import { createMovie, updateMovie, deleteMovie, getMovie, getAllMovies ,getLastMovies} from '../controller/movie-controller.js';
 import { uploadImage, getImage } from '../controller/image-controller.js';
 import { newComment, getComments, deleteComment } from '../controller/comment-controller.js';
-import { loginUser, singupUser, logoutUser } from '../controller/user-controller.js';
+import { loginUser, signupUser, logoutUser,deleteUser ,getUser} from '../controller/user-controller.js';
 import { authenticateToken, createNewToken } from '../controller/jwt-controller.js';
 import { addWatchlist,getWatchlist,deleteWatchlist } from '../controller/watchlist-controller.js';
 import { newRate,getRates } from '../controller/rate-controller.js';
@@ -13,8 +13,10 @@ import upload from '../utils/upload.js';
 const router = express.Router();
 
 router.post('/login', loginUser);
-router.post('/signup', singupUser);
+router.post('/signup', signupUser);
 router.post('/logout', logoutUser);
+router.delete('/udelete/:id',authenticateToken,deleteUser);
+router.get('/getuser/:id',authenticateToken,getUser);
 
 router.post('/token', createNewToken);
 

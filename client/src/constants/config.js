@@ -29,6 +29,8 @@ export const SERVICE_URLS = {
     userLogin: { url: '/login', method: 'POST' },
     userLogout:{ url:'/logout',method: 'POST'},
     userSignup: { url: '/signup', method: 'POST' },
+    userDelete : {url: '/udelete', method:'DELETE', query: true },
+    getUser: { url: '/getuser', method: 'GET', query: true },
     getAllPosts: { url: '/posts', method: 'GET', params: true },
     getLastMovies: { url: '/lastmovies', method: 'GET', params: true },
     getRefreshToken: { url: '/token', method: 'POST' },
